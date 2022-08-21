@@ -15,6 +15,72 @@ body:
           required: true
         - label: Did you search the [issue tracker](https://github.com/rockyhawk64/CommandPanels/issues?q=is%3Aissue) for a similar problem?
           required: true
+  - type: dropdown
+    id: server_version
+    attributes:
+      label: What server version are you running?
+      options:
+        - 1.7
+        - 1.8
+        - 1.9
+        - 1.10
+        - 1.11
+        - 1.12
+        - 1.13
+        - 1.14
+        - 1.15
+        - 1.16
+        - 1.17
+        - 1.18
+        - 1.19
+    validations:
+     required: true
+  - type: dropdown
+    id: commandpanels_version
+    attributes:
+      label: What CommandPanels version are you using?
+      options:
+        - 3.18.1.2
+        - 3.18.1.1
+        - 3.18.1.0
+        - 3.18.0.0
+        - 3.17.5.0
+        - 3.17.4.3
+        - 3.17.4.2
+        - 3.17.4.1
+        - 3.17.4.0
+        - 3.17.3.1
+        - 3.17.3.0
+        - 3.17.2.2
+        - 3.17.2.1
+        - 3.17.2.0
+        - 3.17.1.5
+        - 3.17.1.4
+        - 3.17.1.3
+        - 3.17.1.2
+        - 3.17.1.1
+        - 3.17.1.0
+        - Any other version
+    validations:
+     required: true
+  - type: dropdown
+    id: server_software
+    attributes:
+      label: What server software are you running?
+      options:
+        - PaperMC
+        - Purpur
+        - Spigot
+        - CraftBukkit
+        - Glowstone
+        - Magma
+        - Mohist
+        - WaterFall
+        - BungeeCord
+        - Velocity
+        - Travertine
+    validations:
+     required: true
   - type: textarea
     id: what-happened
     attributes:
@@ -36,7 +102,18 @@ body:
         4. See error
     validations:
       required: true
-
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
   - type: textarea
     id: logs
     attributes:
@@ -44,25 +121,35 @@ body:
       description: Please copy and paste any error you got (this will be automatically formatted into code).
       render: shell
       placeholder: |
-        [19:26:04] [Craft Scheduler Thread - 18 - ItemsAdder/WARN]: [ItemsAdder] Plugin ItemsAdder v2.4.16 generated an exception while executing task 22801
-          java.lang.ExceptionInInitializerError: null
-            at dev.lone.itemsadder.l.j.a(SourceFile:166) ~[ItemsAdder.jar:?]
-            at dev.lone.itemsadder.l.j.av(SourceFile:104) ~[ItemsAdder.jar:?]
-            at dev.lone.itemsadder.l.a.a(SourceFile:164) ~[ItemsAdder.jar:?]
-            at org.bukkit.craftbukkit.v1_17_R1.scheduler.CraftTask.run(CraftTask.java:101) ~[patched_1.17.1.jar:git-Airplane-84]
-            at org.bukkit.craftbukkit.v1_17_R1.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57) [patched_1.17.1.jar:git-Airplane-84]
-            at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22) [patched_1.17.1.jar:git-Airplane-84]
-            at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
-            at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
-            at java.lang.Thread.run(Thread.java:831) [?:?]
-          Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make field long java.util.zip.ZipEntry.size accessible: module java.base does not "opens java.util.zip" to unnamed module @6f6969ca
-            at java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:357) ~[?:?]
-            at java.lang.reflect.AccessibleObject.checkCanSetAccessible(AccessibleObject.java:297) ~[?:?]
-            at java.lang.reflect.Field.checkCanSetAccessible(Field.java:177) ~[?:?]
-            at java.lang.reflect.Field.setAccessible(Field.java:171) ~[?:?]
-            at com.comphenix.protocol.reflect.FieldUtils.getField(FieldUtils.java:111) ~[PROTOCOLLIB.jar:?]
-            at dev.lone.itemsadder.l.k.<clinit>(SourceFile:12) ~[ItemsAdder.jar:?]
-            ... 9 more
+        [17:10:16 ERROR]: Could not pass event PlayerInteractEvent to CommandPanels v3.18.1.1
+org.bukkit.event.EventException: null 
+        at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:302) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:78) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:517) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:502) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:191) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:721) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.PacketPlayInBlockPlace.a(PacketPlayInBlockPlace.java:52) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.PacketPlayInBlockPlace.a(PacketPlayInBlockPlace.java:1) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) ~[?:1.8.0_292]
+        at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_292]
+        at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:741) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:366) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:680) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:583) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_292] Caused by: java.lang.NullPointerException
+        at me.rockyhawk.commandpanels.panelblocks.PanelBlockOnClick.onInteract(PanelBlockOnClick.java:23) ~[?:?]
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_292]
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_292]
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_292]
+        at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_292]
+        at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:300) ~[server1.jar:git-PaperSpigot-f6b10d47]
+        ... 19 more
   - type: textarea
     id: configuration_files
     attributes:
