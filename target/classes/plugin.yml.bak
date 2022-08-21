@@ -1,0 +1,38 @@
+main: me.jonathan.Iaddon
+name: BlockLimiter
+version: 1.0.0
+prefix: ItemsAdder
+description: An addon for Itemsadder
+api-version: 1.18
+author: Jonathan_Nathan
+website: Garconia.ddns.net
+depend: [ItemsAdder]
+permissions:
+  iaddon.*:
+    default: op
+    description: gives all perms
+    children:
+      iaddon.bypass: true
+      iaddon.command.reload: true
+  iaddon.bypass:
+    description: allows the player to place blocks anywhere
+    default: op
+  iaddon.command.reload:
+    description: allows the user to reload the plugin
+    default: op
+commands:
+  blreload:
+    default: op
+    permission: iaddon.command.reload
+    description: reloads BlockLimiter
+    permission-message: You do not have permission to use this command.
+    aliases: [breload]
+    usage: "Usage: /<command>"
+  bledit:
+    default: op
+    permission: iaddon.command.edit
+    description: opens the editor for BlockLimiter
+    permission-message: You do not have permission to use this command.
+    aliases: [bedit]
+    usage: "Usage: /<command>"
+

@@ -1,0 +1,41 @@
+# made by jonathan_nathan#9938 on discord
+# BlockLimiter - https://www.spigotmc.org/resources/block-limiter.103716/
+# wiki - https://garconia.gitbook.io/blocklimiter/
+config-version: 1.0.0 # this is if the developer has added messages/editor/other sections and will automaticly add them upon adding the new plugin file to the server
+
+in-game-editor: # perm for this is
+  enabled: true # if you want the in game editor to be enabled
+  nextpage: 
+    name:
+    material: ARROW # next page button material
+  prevpage: 
+    material: ARROW # previous page button material
+    name:
+  exit: 
+    material: BARRIER # the exit button material
+    name:
+  blockers: 
+    material: PISTON # the area that separates the items from the menu options material
+    name:
+  undefined: 
+    material: BOOK # the items from itemsadder that erent in the config material
+    name:
+
+messages:
+  wrong-block: "&4ItemsAdder &7%player-name% Sorry but you cant place that block there"
+#player.getName()+" Was denied placement for a block, namespace - "+n[0]+" | Id - "+n[1]+"" + ChatColor.GRAY + "you can disable these messages in the config"
+  wrong-block-console: true
+  player-wrong-block: true # can be set above under wrong-block:
+items:
+#- "namespace:id"
+
+#namespace:id: without the 1st :
+#  whitelist: true | false
+#  water-collision: true | false # if the block breaks if water collides with it
+#  can-float: true | false # this is if you want the block to float if the block under is broken
+#  blocks: # can have multiple
+#  - Material
+
+
+
+
