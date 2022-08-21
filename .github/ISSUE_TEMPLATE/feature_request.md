@@ -1,55 +1,62 @@
-name: Feature request
-description: Suggest an idea for this project
-labels: ["Feature request"]
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees:
+  - octocat
 body:
-  - type: checkboxes
-    id: searched
-    attributes:
-      label: Terms
-      options:
-        - label: "I'm using the very latest version of ItemsAdder and its dependencies."
-          required: true
-        - label: I already searched on this [Github page](https://github.com/PluginBugs/Issues-ItemsAdder/issues) to check if the same suggestion was already reported.
-          required: true
-        - label: I already searched on the [plugin wiki](https://itemsadder.devs.beer/) to know if the feature is already implemented.
-          required: true
-        - label: I already searched on the **Discord** server to know if anyone already has a solution for this or if the feature was already suggested.
-          required: true
-  - type: input
-    id: discord_tag
-    attributes:
-      label: Discord tag (optional)
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. DiscordTag#0001
-    validations:
-      required: false
-  - type: textarea
-    id: description
-    attributes:
-      label: "Describe the solution you'd like"
-      placeholder: "A clear and concise description of what you want to happen."
-    validations:
-      required: true
-  - type: textarea
-    id: problem
-    attributes:
-      label: Is your feature request related to a problem?
-      placeholder: "A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]"
-    validations:
-      required: true
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: "Describe alternatives you've considered"
-      placeholder: "A clear and concise description of any alternative solutions or features you've considered."
-    validations:
-      required: true
-  - type: textarea
-    id: additional_context
-    attributes:
-      label: "Additional context"
-      placeholder: "Add any other context or screenshots about the feature request here."
   - type: markdown
     attributes:
       value: |
-        ## Thanks for taking the time to fill out this suggestion page!
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.2 (Default)
+        - 1.0.3 (Edge)
+    validations:
+      required: true
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: What browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
