@@ -27,16 +27,16 @@ import updater.UpdateChecker;
  */
 public class BlockLimiter extends JavaPlugin {
 	
-	String configver = "1.1.5";
+	String configver = "1.2.0";
     private File oldConfigFile;
     private FileConfiguration oldConfig;
-
 	private static BlockLimiter instance;
 	
 	@Override
 	public void onLoad() {
-		saveDefaultConfig();
 		instance = this;
+		saveDefaultConfig();
+		
 	}
 	@Override
 	public void onEnable() {
@@ -96,8 +96,6 @@ public class BlockLimiter extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        
-        
 	}
 
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -18,9 +17,10 @@ import dev.lone.itemsadder.api.CustomBlock;
 import dev.lone.itemsadder.api.CustomStack;
 import dev.lone.itemsadder.api.Events.CustomBlockPlaceEvent;
 import me.jonathan.BlockLimiter;
+import me.jonathan.utils.BlockUtil;
 import me.jonathan.utils.DropUtil;
-import me.jonathan.utils.MsgUtil;
 import me.jonathan.utils.randomizerUtil;
+import net.md_5.bungee.api.ChatColor;
 import updater.UpdateChecker;
 
 
@@ -29,77 +29,45 @@ public class Events implements Listener {
 	@EventHandler
 	public static void onBlockPlace(CustomBlockPlaceEvent event) {
 		FileConfiguration config = BlockLimiter.getInstance().getConfig();
+		
+		
+		String namespace1 = event.getNamespacedID();
 		Player player = event.getPlayer();
-		
-		String namespace = event.getNamespacedID();
-		Location under = event.getBlock().getLocation().subtract(0.00, 1, 0.00);
-		
-		// if the use has the bypass perm
-		Material bunder = under.getBlock().getBlockData().getMaterial();
-		if (player.hasPermission("iaddon.bypass")) { 
-			Bukkit.getLogger().info(player.getName() + " Has bypassed placement for a block");
-			return;
-		}
-		
-		
-		
-		CustomBlock custom = CustomBlock.byAlreadyPlaced(under.getBlock());
-		if (custom != null) {
+		Block block = event.getBlock();
+		Location placed = block.getLocation();
+		Location under = placed.subtract(0, 1, 0);
+		Block bunder = under.getBlock();
+		String namespace2 = namespace1.replace(":", "");
+		String wrongmsg = config.getString("messages.wrong-block");
+		if (config.getStringList("items").contains(namespace1)) {
 			
-		}
-		
-		
-
-		
-		
-		
-		// if the items initializer has the items
-		if (config.getStringList("items").contains(namespace)) {
-			// if the location to place contains water
-			if (
-					config.getBoolean(namespace.replace(":", "") + ".water-collision")&&
-					event.getBlock().getLocation().getBlock().isLiquid()
-					) {
-				event.setCancelled(true);
-				MsgUtil.wrongblockconsole(player, namespace, bunder.toString());
-				MsgUtil.wrongBlockMsg(player);
-				return;
+			if (player.hasPermission("blocklimiter.bypass")) return;
+			if (BlockUtil.isWater(placed) && config.getBoolean(namespace2 + ".water-collision")) player.sendMessage(ChatColor.translateAlternateColorCodes('&', wrongmsg)); event.setCancelled(true);
+			
+			CustomBlock stack = CustomBlock.byAlreadyPlaced(bunder);
+			if (stack != null) {
+				if (config.getBoolean(namespace2 + ".whitelist")) {
+					
+					if (config.getStringList(namespace2 + ".custom-blocks").contains(stack.getNamespacedID())) {
+						return;
+					} else player.sendMessage(ChatColor.translateAlternateColorCodes('&', wrongmsg)); event.setCancelled(true);
+				} else { // blacklisted 
+					if (!config.getStringList(namespace2 + ".custom-blocks").contains(stack.getNamespacedID())) {
+						return;
+					} else player.sendMessage(ChatColor.translateAlternateColorCodes('&', wrongmsg)); event.setCancelled(true);
+				}
+			} else {
+				if (config.getBoolean(namespace2 + ".whitelist")) {
+					
+					if (config.getStringList(namespace2 + ".blocks").contains(bunder.getType().toString())) {
+						return;
+					} else player.sendMessage(ChatColor.translateAlternateColorCodes('&', wrongmsg)); event.setCancelled(true);
+				} else { // blacklisted 
+					if (!config.getStringList(namespace2 + ".blocks").contains(bunder.getType().toString())) {
+						return;
+					} else player.sendMessage(ChatColor.translateAlternateColorCodes('&', wrongmsg)); event.setCancelled(true);
+				}
 			}
-			
-			
-			
-			// if the block should be whitelisted or blacklisted
-			if (config.getBoolean(namespace.replace(":", "") + ".whitelist")) 
-				// if the block under the placement is in the blocks list
-				if (config.getStringList(namespace.replace(":", "") +  ".blocks").contains(bunder.toString())
-						|| config.getStringList(namespace.replace(":", "") +  ".custom-blocks").contains(custom.getNamespacedID())) {
-					return;
-				} else {
-					event.setCancelled(true);
-					MsgUtil.wrongblockconsole(player, namespace, bunder.toString());
-					MsgUtil.wrongBlockMsg(player);
-					return;
-					
-				}
-			
-			
-			
-			
-			
-			// if the block is blacklisted
-			if (!config.getBoolean(namespace.replace(":", "") + ".whitelist")) 
-				// if the block under the placement is not in the blocks list
-				if (!config.getStringList(namespace.replace(":", "") +  ".blocks").contains(bunder.toString())
-						|| !config.getStringList(namespace.replace(":", "") +  ".custom-blocks").contains(custom.getNamespacedID())) {
-					
-					return;
-				} else {
-					event.setCancelled(true);
-					MsgUtil.wrongblockconsole(player, namespace, bunder.toString());
-					MsgUtil.wrongBlockMsg(player);
-					return;
-					
-				}
 		} else return;
 	}
 	@EventHandler

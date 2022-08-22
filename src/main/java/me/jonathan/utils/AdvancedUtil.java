@@ -14,19 +14,21 @@ import me.jonathan.BlockLimiter;
  * 
  */
 public class AdvancedUtil {
-	private static FileConfiguration config = BlockLimiter.getInstance().getConfig();
-	private static BlockLimiter plugin = BlockLimiter.getInstance();
 	
 	private static double xCord(String path) {
+		FileConfiguration config = BlockLimiter.getInstance().getConfig();
 		return config.getDouble(path + ".advanced.x-cord");
 	}
 	private static double yCord(String path) {
+		FileConfiguration config = BlockLimiter.getInstance().getConfig();
 		return config.getDouble(path + ".advanced.y-cord");
 	}
 	private static double zCord(String path) {
+		FileConfiguration config = BlockLimiter.getInstance().getConfig();
 		return config.getDouble(path + ".advanced.z-cord");
 	}
 	public static void advancedOptions(String path, World world, String action, Location loc) {
+		FileConfiguration config = BlockLimiter.getInstance().getConfig();
 		if (config.getBoolean(path + ".advanced-options")) {
 			location(path, world, action, loc);
 		}

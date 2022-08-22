@@ -12,6 +12,7 @@ import org.bukkit.Material;
  */
 public class BlockUtil {
 
+	public static boolean isWater(Location loc) {return loc.getBlock().isLiquid();}
 	
 	public static void removeBlock(Location loc) {
 		loc.getBlock().setType(Material.AIR);

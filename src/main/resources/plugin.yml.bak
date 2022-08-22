@@ -1,6 +1,6 @@
 main: me.jonathan.BlockLimiter
 name: BlockLimiter
-version: 1.1.4
+version: 1.1.5
 prefix: BlockLimiter
 description: An addon for Itemsadder
 api-version: 1.18
