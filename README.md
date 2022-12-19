@@ -1,3 +1,12 @@
+# Public Archive
+
+## Why?
+I am archiving this because im not goint to nore want to contiue with this project I will be uploading the final version witch will fix some issues
+if you would like to use my code or continue it please contact me and i will transfer the title
+
+
+
+
 # Welcome
 
 BlockLimiter is a addon for Itemsadder it will allow you to remove a block if the block under is removed and will limit what bocks can be placed on
